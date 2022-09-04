@@ -10,15 +10,17 @@ export interface User {
   password: string;
 }
 
+export const API = 'https://demo-api.now.sh/users';
 @Injectable()
 export class UserService {
+  // TODO: Replace it with appropriate NgRx store.
   readonly userRegistry$ = new ReplaySubject<User>(1);
 
   constructor(private http: HttpClient) {}
 
   create(user: User) {
     return this.http
-      .post<User>('https://demo-api.now.sh/users', user)
+      .post<User>(API, user)
       .pipe(tap((newUser) => this.userRegistry$.next(newUser)));
   }
 

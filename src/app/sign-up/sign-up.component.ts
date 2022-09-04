@@ -1,5 +1,11 @@
-import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  NgModule,
+  OnDestroy,
+} from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { User, UserService } from '../data-access';
 import { SignUpFormComponentModule } from './ui-components/sign-up-form/sign-up-form.component';
 
@@ -9,16 +15,22 @@ import { SignUpFormComponentModule } from './ui-components/sign-up-form/sign-up-
   styleUrls: ['./sign-up.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnDestroy {
+  subscription!: Subscription;
+
   constructor(
     private readonly router: Router,
     private readonly userService: UserService
   ) {}
 
   create(user: User) {
-    this.userService
+    this.subscription = this.userService
       .create(user)
       .subscribe(() => this.router.navigate(['welcome']));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
 

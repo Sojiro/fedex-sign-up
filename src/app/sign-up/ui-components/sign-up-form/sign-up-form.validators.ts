@@ -1,5 +1,4 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { first } from 'rxjs';
 
 export const passwordValidator: ValidatorFn = (
   control: AbstractControl
@@ -9,9 +8,13 @@ export const passwordValidator: ValidatorFn = (
 
   if (!firstName || !lastName) return null;
 
-  const password = String(control.get('password')?.value);
+  const password = String(control.get('password')?.value).toLocaleLowerCase();
 
-  return password.includes(firstName.value) || password.includes(lastName.value)
-    ? { password: true }
-    : null;
+  const containsFirstName = password.includes(
+    String(firstName.value).toLocaleLowerCase()
+  );
+  const containsLastName = password.includes(
+    String(lastName.value).toLocaleLowerCase()
+  );
+  return containsFirstName || containsLastName ? { password: true } : null;
 };

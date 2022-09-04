@@ -1,35 +1,17 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { Spectator, createComponentFactory } from '@ngneat/spectator/jest';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+describe(AppComponent.name, () => {
+  let spec: Spectator<AppComponent>;
+  const createComponent = createComponentFactory({
+    component: AppComponent,
+    shallow: true,
+    detectChanges: false,
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  beforeEach(() => (spec = createComponent()));
 
-  it(`should have as title 'fedex-sign-up'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('fedex-sign-up');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('fedex-sign-up app is running!');
+  it('should be created', () => {
+    expect(spec.component).toBeInstanceOf(AppComponent);
   });
 });

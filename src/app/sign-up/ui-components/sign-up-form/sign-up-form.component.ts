@@ -1,21 +1,16 @@
-import { NgModule, ViewChild } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  OnInit,
-  Output,
+  EventEmitter, NgModule, Output
 } from '@angular/core';
+import {
+  FormControl,
+  FormGroup, ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
 import { User } from 'src/app/data-access';
 import { passwordValidator } from './sign-up-form.validators';
-import { CommonModule } from '@angular/common';
 
 export interface SignUpForm {
   firstName: FormControl<string>;
