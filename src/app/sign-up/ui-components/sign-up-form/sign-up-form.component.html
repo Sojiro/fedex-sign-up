@@ -1,0 +1,57 @@
+<form [formGroup]="signUpForm" (ngSubmit)="validateAndSubmit()" #form>
+  <h1 class="text-4xl my-5">Sign Up</h1>
+  <div>
+    <label for="firstName">First Name</label>
+    <input
+      type="text"
+      formControlName="firstName"
+      id="firstName"
+      placeholder="Thomas"
+    />
+  </div>
+  <div>
+    <label for="lastName">Last Name</label>
+    <input
+      type="text"
+      formControlName="lastName"
+      id="lastName"
+      placeholder="Shelby"
+    />
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input
+      type="email"
+      formControlName="email"
+      id="email"
+      placeholder="thomas@shelby.co.uk"
+    />
+  </div>
+  <div
+    [ngClass]="{
+      'h-0':
+        signUpForm.get('firstName')?.invalid ||
+        signUpForm.get('lastName')?.invalid
+    }"
+    class="h-auto overflow-hidden"
+  >
+    <label for="password">Password</label>
+    <div class="relative">
+      <input
+        [ngClass]="{ 'invalid-password': invalidPassword }"
+        type="password"
+        formControlName="password"
+        id="password"
+        placeholder="at least 8 characters"
+      />
+      <ng-container *ngIf="invalidPassword">
+        <div class="custom-error">
+          Password should not contain first or last name!
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div>
+    <button type="submit">Become a member</button>
+  </div>
+</form>
