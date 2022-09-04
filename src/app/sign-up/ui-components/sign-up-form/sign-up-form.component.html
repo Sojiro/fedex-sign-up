@@ -28,12 +28,12 @@
     />
   </div>
   <div
-    [ngClass]="{
+    [ngClass]="{ 
       'h-0':
         signUpForm.get('firstName')?.invalid ||
         signUpForm.get('lastName')?.invalid
     }"
-    class="h-auto overflow-hidden"
+    class="overflow-hidden"
   >
     <label for="password">Password</label>
     <div class="relative">

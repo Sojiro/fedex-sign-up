@@ -1,0 +1,12 @@
+<section *ngIf="newUser | async as user" class="welcome-banner">
+  <h1>Welcome {{ user.firstName }}!</h1>
+  <p class="id">Your member ID: {{ user._id }}</p>
+  <div class="confirmation-banner">
+    Please confirm your membership by clicking on the confirmation link sent to
+    your inbox
+    <div>{{ user.email }}</div>
+  </div>
+  <button [routerLink]="['/']">
+    <a>Back</a>
+  </button>
+</section>

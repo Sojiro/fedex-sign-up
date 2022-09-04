@@ -4,7 +4,6 @@ import { first } from 'rxjs';
 export const passwordValidator: ValidatorFn = (
   control: AbstractControl
 ): ValidationErrors | null => {
-  console.log('🚀 | control', control);
   const firstName = control.get('firstName');
   const lastName = control.get('lastName');
 

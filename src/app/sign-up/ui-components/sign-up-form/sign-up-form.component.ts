@@ -68,7 +68,6 @@ export class SignUpFormComponent {
   validateAndSubmit() {
     if (this.signUpForm.valid) {
       this.submitted.emit({ ...this.signUpForm.value } as User);
-      this.signUpForm.reset();
     }
   }
 

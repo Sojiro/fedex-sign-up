@@ -7,8 +7,12 @@ const routes: Routes = [
     loadChildren: () => import('./sign-up').then((m) => m.SignUpModule),
   },
   {
+    path: 'welcome',
+    loadChildren: () =>
+      import('./welcome').then((m) => m.WelcomeComponentModule),
+  },
+  {
     path: '**',
-    pathMatch: 'full',
     redirectTo: 'sign-up',
   },
 ];
